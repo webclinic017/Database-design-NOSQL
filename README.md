@@ -1,5 +1,5 @@
 ## Database-design-NOSQL
-Step by step guide to prescribing and designing NOSQL databases. Within this repository we will discuss what NOSQL databases are, the various architectural patterns in which they can be set up. We will also design 2 sample NOSQL databases that will solve typical business problems.
+Step by step guide to prescribing and designing NOSQL databases. Within this repository we will discuss what NOSQL databases are, the various architectural patterns in which they can be set up. We will also migrate data into, and design 2 sample NOSQL databases. 
 
 ### Table of contents
 
@@ -145,4 +145,43 @@ Implementation of document stores - The implementation of document stores could 
 
 Ad server in Mongo DB 
 
+## NOSQL database creation and use
 
+Within this repository we will migrating data into, and querying data from 2 patterns of NOSQL databases. These examples will be taken to highlight the characteristics of both types of databases
+
+These databases architecture patterns are as follows;
+
+1) Key Value Stores
+2) Document stores
+
+The other 2 types will be discussed in a subsequent guide.
+
+For the key value stores database we will make use of the in-memory database called **Redis**. While for the document store, **MongoDB Atlas** will be utilized. 
+All code will be written in python, hence we will make use of the drivers for the respective databases.
+
+### Key Value Stores - (Demonstrated using Redis)
+
+### Document Stores - (Demonstrated using MongoDB Atlas)
+
+To show the characteristics of document stores, we will be making use of MongoDB Atlas. Mongo DB Atlas is a cloud based database developed by the makers of MongoDB. 
+
+In order to follow this guide, one will need to create a profile and clusters on the MongoDB servers.
+
+To get started (deploying clusters, creating an account...etc) with MongoDB, visit the attached link: [https://docs.atlas.mongodb.com/getting-started/](https://docs.atlas.mongodb.com/getting-started/)
+
+#### The data 
+The data we will be migrating and analysing using the MongoDB database are the lyrics of all of Drake's music catalogue. These lyrics are contained with in seperate documents within a single JSON file. 
+
+The data is named __drake_data.jason__ and is available in this link: [https://www.kaggle.com/juicobowley/drake-lyrics?select=drake_data.json](https://www.kaggle.com/juicobowley/drake-lyrics?select=drake_data.json)
+
+The values within the various documents are very self explanatory and are labeled as follows "Album", "Lyrics_title", "Lyrics_URL", "Lyrics" and "Track_views"
+
+The questions to be answered from the dataset are as follows:
+
+1) How many songs are contained with drake's musical catalog?
+2) Number of albums within the dataset?
+3) Names of the albums within the dataset?
+4) Number of songs (documents) per album?
+5) What song per album has the highest number of views?
+6) Can we perform a search of portions of lyrics ?
+7) Create an index to speed up queries.
