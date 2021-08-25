@@ -1,5 +1,5 @@
 ## Database-design-NOSQL
-Step by step guide to prescribing and designing NOSQL databases. Within this repository we will discuss what NOSQL databases are, the various architectural patterns in which they can be set up. We will also migrate data into, and design 2 sample NOSQL databases. 
+Step-by-step guide to prescribing and designing NOSQL databases. Within this repository we will discuss what NOSQL databases are, the various architectural patterns in which they can be set up. We will also migrate data into, and design 2 sample NOSQL databases. 
 
 ### Table of contents
 
@@ -16,10 +16,10 @@ NOSQL databases refer to "Not only SQL" databases. These are databases that are 
 
 1) Key Value stores
 2) Graph stores
-3) Column familty stores
+3) Column family stores
 4) Document stores
  
- We would explain all of the above patterns here and discuss their use cases
+ We would explain all the above patterns here and discuss their use cases
  
  **Key value stores**
  
@@ -47,7 +47,7 @@ PUT: insert a key value pair into a database
 
 GET: retrieve a value using a supplied key
 
-DELETE: remove a key value pair from the a database
+DELETE: remove a key value pair from the database
 
 
 **_Typical use case for key value stores_**
@@ -63,10 +63,10 @@ Other uses include dictionary, image store, query cache, lookup tables
  **Graph Stores**
  
  Graphical store is a system that contains a sequence of nodes and relationships that make up a graph. A graph store has 3 data fields namely, notes, relationships and properties. 
- They are ideal when many items that are related to each other in complex ways and these relationships have properties. In this type of store, simple queries can be made to show the nearest neighboring nodes as well as queries to find patterns. 
+ They are ideal when many items (with various properties) that are related to each other in complex ways. In this type of store, simple queries can be made to show the nearest neighboring nodes as well as queries to find patterns. 
  
  Graph nodes are usually representations of real-world entities like nouns (People, telephone numbers, web pages...etc).
- 
+  
  
  **_Characteristics of graph stores_**
  
@@ -82,19 +82,19 @@ Other uses include dictionary, image store, query cache, lookup tables
  
  Can efficiently perform join operations
  
- Computationally lightweigh and faster compared to RDMS
+ Computationally lightweight and faster compared to RDMS
  
  
  **_Disadvantages of graph stores_**
  
- Difficult to scale on multiple servers due to the close connectedness of each nodes in graph
+ Difficult to scale on multiple servers due to the close connectedness of each node in the graph.
  
  
  **_Typical use cases_**
  
- Link analysis - To perform searches and look for patterns and relationships in situations such as social networking. Popular social networking apps use this type to recommend new contacts or connections with individuals that have mutual friends, location or backgrounds. Graph stores can perfrom these kinds of queries much faster than a RDBMS.
+ Link analysis - To perform searches and look for patterns and relationships in situations such as social networking. Popular social networking apps use this type to recommend new contacts or connections with individuals that have mutual friends, location or backgrounds. Graph stores can perform these kinds of queries much faster than a RDBMS.
  
- Rules and inference - These are used to run queries on complex structures (eg Class libraries, taxonomies and rule based systems)
+ Rules and inference - These are used to run queries on complex structures (e.g. Class libraries, taxonomies and rule based systems)
  
  Integrating linked data - This sort of store can be used to perform real time integration of large amounts of open linked data, without necessarily storing the data.
  This involves joining together different data from different sources automatically using a tool such as linked open data (LOD). 
@@ -109,9 +109,9 @@ Other uses include dictionary, image store, query cache, lookup tables
  
  High scalability. Column family stores do not rely on joins, so they scale well on distributed systems
  
- Contain inbuilt automatic fail over built in to detect failing nodes and alforithms to identify corrupt data
+ Contain inbuilt automatic fail over built in to detect failing nodes and algorithms to identify corrupt data
  
- Designed to work in distributed filesystems (eg. Hadoop) and MapReduce transforms.
+ Designed to work in distributed filesystems (e.g. Hadoop) and MapReduce transforms.
 
  High availability - the ability to replicate data on multiple nodes in a network. 
  
@@ -119,7 +119,7 @@ Other uses include dictionary, image store, query cache, lookup tables
  
  **_Typical use cases_**
  
- Analytical information in Bigtable - Bigtable is used to store website usage information in Google analytics, which help tracks who is visiting a website. When a user clicks on a web page, the hit is stored in a sigle row-column entry that has the URL and a timestamp as the row ID. 
+ Analytical information in Bigtable - Bigtable is used to store website usage information in Google Analytics, which help track who is visiting a website. When a user clicks on a web page, the hit is stored in a single row-column entry that has the URL and a timestamp as the row ID. 
  
  Google Maps storing geographic information in Bigtable - Used to store longitude and latitude coordinates of geographic points on earth and the moon, allowing users to zoom into and out of places using a 3D- graphical interface.
  
@@ -127,7 +127,7 @@ Other uses include dictionary, image store, query cache, lookup tables
  **Document stores**
 
 Quite similar to key-store, however it stores documents rather than "values". These documents are made up of named data and could be nested within other documents.
-Unlike key-value and column family stores that aren't indexed or searchable, almost any item within the documents store can be retrieved. Everyting inside a document is automatically indexed whenever a new document is added. 
+Unlike key-value and column family stores that aren't indexed or searchable, almost any item within the documents store can be retrieved. Everything inside a document is automatically indexed whenever a new document is added. 
 Document store database do not require a schema but each document has a primary key, which uniquely identifies the document.
 
 **_Characteristics of document stores_**
@@ -147,9 +147,9 @@ Ad server in Mongo DB
 
 ## NOSQL database creation and use
 
-Within this repository we will migrating data into, and querying data from 2 patterns of NOSQL databases. These examples will be taken to highlight the characteristics of both types of databases
+Within this repository we will migrate data into, and query data from 2 patterns of NOSQL databases. These examples will be taken to highlight the characteristics of both types of databases
 
-These databases architecture patterns are as follows;
+These database architecture patterns are as follows;
 
 1) Key Value Stores
 2) Document stores
@@ -169,19 +169,185 @@ In order to follow this guide, one will need to create a profile and clusters on
 
 To get started (deploying clusters, creating an account...etc) with MongoDB, visit the attached link: [https://docs.atlas.mongodb.com/getting-started/](https://docs.atlas.mongodb.com/getting-started/)
 
+
 #### The data 
-The data we will be migrating and analysing using the MongoDB database are the lyrics of all of Drake's music catalogue. These lyrics are contained with in seperate documents within a single JSON file. 
+The data we will be migrating and analysing using the MongoDB database are the lyrics of all of Drake's music catalogue. These lyrics are contained in separate documents within a single JSON file. 
 
 The data is named __drake_data.jason__ and is available in this link: [https://www.kaggle.com/juicobowley/drake-lyrics?select=drake_data.json](https://www.kaggle.com/juicobowley/drake-lyrics?select=drake_data.json)
 
-The values within the various documents are very self explanatory and are labeled as follows "Album", "Lyrics_title", "Lyrics_URL", "Lyrics" and "Track_views"
+The fields within the various documents are very self-explanatory and are labeled as follows "Album", "Lyrics_title", "Lyrics_URL", "Lyrics" and "Track_views"
 
-The questions to be answered from the dataset are as follows:
+To make use of the data within the database we created a database named "lyrics". Within the database we created a collection named "drake". If we decide to add other artists' lyrics, we will simply create separate collection for each artist.
+
+From the image below we can see the database and collection (see the blue rectangle) created with within the newly created mongoDB cluster
+
+The red rectangle encircles 2 documents that represent song lyrics from Drake's latest album "Certified lover boy". From this view,we can see the schema of each document. 
+
+![MongoDB view](https://user-images.githubusercontent.com/83844773/130481021-8ade0572-927d-43ef-b741-52bac09c44cc.png)
+
+### Problems our database will help solve
+
+Imagine we were creating an app that will help users look up lyrics for available artists. 
+What kinds of information will the app need to display? For one, I want to be able to search for a song using only a portion of the lyrics.
+I would like to be able to see information about the various albums. For instance the number of songs in a certain album, and the most popular songs (Song with the highest number of views). 
+I would also like to create an app that is responsive and gives me results quickly.
+
+As a result,the following questions we will answer will be as follows:
 
 1) How many songs are contained with drake's musical catalog?
 2) Number of albums within the dataset?
 3) Names of the albums within the dataset?
 4) Number of songs (documents) per album?
-5) What song per album has the highest number of views?
+5) What are the 10 most popular songs?
 6) Can we perform a search of portions of lyrics ?
 7) Create an index to speed up queries.
+
+We show the code needed to answer the queries. We will also display results gotten from the python console.
+
+_How many songs are contained within Drake's musical catalog?_
+
+```` python
+# How many songs are contained within Drake's music catalog
+# As each document represents a song lyrics, the total number of songs will be the total amount of documents
+filter = {}
+total_songs = drake.count_documents(filter)
+
+````
+![NOSQL MONGO1](https://user-images.githubusercontent.com/83844773/130569411-e225760c-e30e-4fae-9822-fdc71b310cab.png)
+
+
+_What are the names of the albums within the collection?_
+
+```` python
+# Name of albums within the entire collection
+name_of_albums = list(drake.distinct("album"))
+print(name_of_albums)
+````
+![NOSQL mongo 2](https://user-images.githubusercontent.com/83844773/130569424-65a683ed-2183-4872-8e3a-ab07fee31494.png)
+
+
+_How many albums are within the collection?_
+
+```` python
+# Number of albums within the collection.
+number_of_albums = len(name_of_albums)
+print(number_of_albums)
+````
+![nosql mongo 7](https://user-images.githubusercontent.com/83844773/130569973-ad95bc19-17c4-4751-bb52-3dd9f06e889e.png)
+
+
+_How many songs contained within each album?_
+
+```` python
+# Number of songs per select albums
+# We will write a for loop to iterate through the list of album names
+for i in name_of_albums:
+    sum = drake.count_documents({"album": i})
+    print(sum)
+````
+![NOSQL mongo 3](https://user-images.githubusercontent.com/83844773/130569436-228ac5aa-0d1a-498b-b283-147ac66ae4d5.png)
+
+
+_What are the 10 most popular songs?_
+
+```` python
+# Top 10 most popular songs
+
+songs = drake.find(
+    filter = {},
+    projection = {"lyrics_title": 1, "album": 1, "track_views": 1, "_id" : 0 }, # fields that will be displayed
+    sort = [("track_views", -1)] # sort by track views, descending order
+)
+
+for song in songs [:10]:
+    print(song)  # Print the documents
+````
+![NOSQL mongo 4](https://user-images.githubusercontent.com/83844773/130569442-c738ed5d-a87f-4224-a0ce-a9c7b85da782.png)
+
+
+_Can we perform a search of portions of lyrics?_
+
+```` python
+# Search for a song from the collection using just the lyrics
+# Search for all songs that contain the line "But it's far from over" using regular expressions
+from bson.regex import Regex # import regex from bson
+
+c = {"lyrics": Regex("But it's far from over") }
+results = drake.find(
+    filter = c,
+    projection = {"lyrics_title": 1, "album": 1, 
+        "track_views": 1, "_id" : 0 }, # fields that will be displayed
+)
+
+results = list(results)
+print(results)# Displays information about the song
+````
+![NOSQL mongo 5](https://user-images.githubusercontent.com/83844773/130569451-aca1b9d3-c94e-4296-91c9-bc01c2de00ba.png)
+
+
+_Can we search for a song using the title of the song?_
+
+````python
+
+dmtm_lyrics = drake.find(
+    filter ={"lyrics_title" : "Don't Matter to Me by Drake & Michael Jackson Lyrics"}, # We have to include the exact lyric title to retrieve the document
+    projection = {"lyrics_title" : 1 , "lyrics" : 1, "_id" : 0} # Use projections to retrieve only lyrics title and lyrics. Exclude ID field
+)
+
+print(list(dmtm_lyrics)) # Use list method to display results
+
+````
+![NOSQL mongo 6](https://user-images.githubusercontent.com/83844773/130569462-ae0228b1-1fe8-4824-9d32-d0c0dff75255.png)
+
+
+_Can we speed up the common queries?_
+
+Imagine we had millions of documents within our collection and on the app, we intend to display the most popular songs per collection.
+This operation will probably take a while and might be computationally demanding. Through indexing, we can create a look up table for finding documents users need frequently. 
+
+Using the code below, we will compare the un-indexed and indexed queries to rank all the songs within the collection by the number of views:
+```` python
+ # Create an index to speed up query
+# First, we will time the unindexed query
+
+import timeit
+
+start = timeit.timeit()
+#Beginning of query
+for song in drake.find(
+    filter = {},
+    projection = {"lyrics_title": 1, "album": 1, "track_views": 1, "_id" : 0 }, # fields that will be displayed
+    sort = [("track_views", -1)] # sort by track views, descending order
+    ):
+
+    print(song)
+
+end = timeit.timeit()
+
+print("The time it took to run the query is", start-end, "seconds") # Print elapsed time between 2 points
+
+# create an index that helps speed up the above query
+
+drake.create_index(
+    [("lyrics_title", 1), ("album", 1), ("track_views", -1)])
+
+#Run the same query after indexing
+start = timeit.timeit()
+#Beginning of query
+for song in drake.find(
+    filter = {},
+    projection = {"lyrics_title": 1, "album": 1, "track_views": 1, "_id" : 0 }, # fields that will be displayed
+    sort = [("track_views", -1)] # sort by track views, descending order
+    ):
+
+    print(song)
+
+end = timeit.timeit()
+
+print("The time it took to run the query is", start-end, "seconds") # Print elapsed time between 2 points
+````
+
+![Index 1](https://user-images.githubusercontent.com/83844773/130566096-1a0a50a7-d689-4e13-ae85-19e937b2f35c.png)
+![index 2](https://user-images.githubusercontent.com/83844773/130566102-50ebdea9-ee83-4520-9d4d-f1c264fc4f65.png)
+
+From the above images, there was a 96% reduction in query time. Pretty impressive.
